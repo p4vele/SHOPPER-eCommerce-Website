@@ -12,7 +12,7 @@ const Payment = () => {
 
   const clearCart = async () => {
     try {
-      const response = await fetch('http://localhost:4000/clearcart', {
+      const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/clearcart', {
         method: 'POST',
         headers: {
           'auth.token': localStorage.getItem('auth.token'),
@@ -31,7 +31,7 @@ const Payment = () => {
   };
 
   const handlePayment = async () => {
-    const response = await fetch('http://localhost:4000/processpayment', {
+    const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/processpayment', {
       method: 'POST',
       headers: {
         'auth.token': localStorage.getItem('auth.token'), 

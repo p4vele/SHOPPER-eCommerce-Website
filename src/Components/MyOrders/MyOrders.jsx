@@ -6,7 +6,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await fetch('http://localhost:4000/myorders', {
+      const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/myorders', {
         headers: {
           'auth.token': localStorage.getItem('auth.token'), 
         },
