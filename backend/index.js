@@ -379,3 +379,35 @@ app.get('/myorders', fetchUser, async (req, res) => {
         res.json({ success: false, message: "No orders found" });
     }
 });
+
+// Fetch all orders - Admin
+app.get('/allorders', async (req, res) => {
+    const orders = await Order.find().populate('userId', 'name email');
+    if (orders) {
+      res.json({ success: true, orders });
+    } else {
+      res.json({ success: false, message: "No orders found" });
+    }
+  });
+  
+  // Remove an order - Admin
+  app.post('/removeorder', async (req, res) => {
+    const { id } = req.body;
+    const order = await Order.findByIdAndDelete(id);
+    if (order) {
+      res.json({ success: true, message: 'Order removed successfully' });
+    } else {
+      res.json({ success: false, message: 'Order not found' });
+    }
+  });
+  
+  // Update order status - Admin
+  app.post('/updatestatus', async (req, res) => {
+    const { id, status } = req.body;
+    const order = await Order.findByIdAndUpdate(id, { status: status }, { new: true });
+    if (order) {
+      res.json({ success: true, message: 'Order status updated successfully', order });
+    } else {
+      res.json({ success: false, message: 'Order not found' });
+    }
+  });
