@@ -6,7 +6,7 @@ const Orders = () => {
   const [allorders, setallorders] = useState([]);
 
   const fetchOrders = async () => {
-    const res = await fetch('http://localhost:4000/allorders');
+    const res = await fetch('https://shopper-ecommerce-website-backend.onrender.com/allorders');
     const data = await res.json();
     setallorders(data.orders);
   };
@@ -16,7 +16,7 @@ const Orders = () => {
   }, []);
 
   const removeOrder = async (id) => {
-    await fetch('http://localhost:4000/removeorder', {
+    await fetch('https://shopper-ecommerce-website-backend.onrender.com/removeorder', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -28,7 +28,7 @@ const Orders = () => {
   };
 
   const updateOrderStatus = async (id, status) => {
-    await fetch('http://localhost:4000/updatestatus', {
+    await fetch('https://shopper-ecommerce-website-backend.onrender.com/updatestatus', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
