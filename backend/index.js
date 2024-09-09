@@ -247,17 +247,27 @@ app.get('/popularinwomen',async(req, res)=>{
 
 //creating middleware for fetch user
 const fetchUser = async(req, res,next)=>{
-    const token = req.header('auth.token');
-    if (!token) return res.status(401).send({ success: false, errors: 'No token provided.' });
-    else {
-        try {
-            const data = jwt.verify(token,'secret_ecom');
-            req.user = data.user;
-            next();
-        } catch (error) {
-            res.status(400).send({ success: false, errors: 'Token is not valid.' });
-        }
+    let token = req.header('Authorization');
+
+    if (!token) {
+        return res.status(401).send({ success: false, errors: 'No token provided.' });
     }
+
+    try {
+        
+        if (token.startsWith('Bearer ')) {
+            token = token.replace('Bearer ', '');
+        }
+
+        const data = jwt.verify(token, 'secret_ecom');
+        req.user = data.user;
+        next(); 
+    } catch (error) {
+        console.error("JWT verification failed:", error); 
+        return res.status(400).send({ success: false, errors: 'Token is not valid.' });
+    }
+
+
 }
 //creating endpoint for adding products to cartdata
 app.post('/addtocart',fetchUser,async(req, res)=>{

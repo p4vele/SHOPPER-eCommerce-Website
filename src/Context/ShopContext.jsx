@@ -22,11 +22,10 @@ const ShopContextProvider = (props)=>{
 
         if(localStorage.getItem('auth.token')){
             fetch('https://shopper-ecommerce-website-backend.onrender.com/getcart',{
-                method:'POST',
-                headers:{
-                    Accept: 'application/json', 
-                    'auth.token': `${localStorage.getItem('auth.token')}`,
-                    'Content-Type':'application/json',
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
+                  'Content-Type': 'application/json',
                    
                 },
                 body : "",
@@ -40,11 +39,10 @@ const ShopContextProvider = (props)=>{
         setCartItems((prev)=> ({...prev, [itemId]:prev[itemId]+1}))
         if(localStorage.getItem('auth.token')){
             fetch('https://shopper-ecommerce-website-backend.onrender.com/addtocart',{
-                method:'POST',
-                headers:{
-                    Accept: 'application/json', 
-                    'auth.token': `${localStorage.getItem('auth.token')}`,
-                    'Content-Type':'application/json',
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
+                  'Content-Type': 'application/json',
                    
                 },
                 body:JSON.stringify({"itemId":itemId}),
@@ -56,11 +54,10 @@ const ShopContextProvider = (props)=>{
         setCartItems((prev)=> ({...prev, [itemId]:prev[itemId]-1}))
         if(localStorage.getItem('auth.token')){
             fetch('https://shopper-ecommerce-website-backend.onrender.com/removefromcart',{
-                method:'POST',
-                headers:{
-                    Accept: 'application/json', 
-                    'auth.token': `${localStorage.getItem('auth.token')}`,
-                    'Content-Type':'application/json',
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
+                  'Content-Type': 'application/json',
                    
                 },
                 body:JSON.stringify({"itemId":itemId}),

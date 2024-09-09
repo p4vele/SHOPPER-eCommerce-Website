@@ -8,11 +8,12 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/myorders', {
         headers: {
-          'auth.token': localStorage.getItem('auth.token'), 
+          'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
+          'Content-Type': 'application/json',
         },
       });
       const data = await response.json();
-      setOrders(data.orders);
+      setOrders(Array.isArray(data.orders) ? data.orders : []);
     };
     fetchOrders();
   }, []);
