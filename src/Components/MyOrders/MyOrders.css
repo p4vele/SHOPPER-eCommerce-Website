@@ -1,0 +1,55 @@
+.myorders {
+    margin: 50px 170px;
+  }
+  
+  .myorders-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .order {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .order-status {
+    font-weight: 600;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .order-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+  }
+  
+  .order-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10%;
+  }
+  
+  .item-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .order-price{
+    font-weight: 600;
+  }

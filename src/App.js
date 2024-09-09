@@ -10,6 +10,10 @@ import Footer from './Components/Footer/Footer';
 import men_banner from './Components/Assets/banner_mens.png';
 import woman_banner from './Components/Assets/banner_women.png';
 import kids_banner from './Components/Assets/banner_kids.png';
+import PlaceOrder from './Components/PlaceOrder/PlaceOrder';
+import Payment from './Components/Payment/Payment';
+import PaymentSuccess from './Components/PaymentSuccess/PaymentSuccess';
+import MyOrders from './Components/MyOrders/MyOrders';
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
             <Route path=':productId' element={<Product/>}/>
           </Route>
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/order' element={<PlaceOrder/>}/>
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route path='/login' element={<LoginSignup/>}/>
         </Routes>
         <Footer />
