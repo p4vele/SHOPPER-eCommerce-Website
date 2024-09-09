@@ -284,3 +284,98 @@ app.post('/getcart',fetchUser,async(req, res)=>{
     let userData = await Users.findOne({_id:req.user.id});
     res.json(userData.cartData);
 })
+
+//Order schema 
+const Order = mongoose.model("Order", {
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+        required: true,
+    },
+    items: {
+        type: Array,
+        required: true,
+    },
+    totalAmount: {
+        type: Number,
+        required: true,
+    },
+    status: {
+        type: String,
+        default: 'Processing', 
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
+// Endpoint to clear the cart after successful payment
+app.post('/clearcart', fetchUser, async (req, res) => {
+    let userData = await Users.findOne({_id: req.user.id});
+    if (userData) {
+        let cart = {};
+        for (let i = 0; i < 300; i++) {
+            cart[i] = 0;
+        }
+        await Users.findOneAndUpdate({_id: req.user.id}, {cartData: cart});
+        res.send({success: true, message: "Cart cleared"});
+    } else {
+        res.send({success: false, message: "User not found"});
+    }
+});
+
+//payment proccess endpoint
+app.post('/processpayment',fetchUser, async (req, res) => {
+    const { cardNumber, expiryDate, cvv, amount } = req.body;
+
+    if (cardNumber && expiryDate && cvv) {
+        console.log(`Processing payment of $${amount} for card ${cardNumber}`);
+        
+        
+        if (cardNumber === '4242424242424242') {  // Example dummy Visa card
+
+            let userData = await Users.findOne({_id: req.user.id});
+            const cartItems = Object.keys(userData.cartData)
+                                .filter(id => userData.cartData[id] > 0);
+            
+            
+            const items = await Promise.all(cartItems.map(async (id) => {
+                const product = await Product.findOne({ id: parseInt(id) });
+                return {
+                    itemId: id,
+                    quantity: userData.cartData[id],
+                    name: product.name,
+                    image: product.image,
+                    new_price: product.new_price,
+                };
+            }));
+
+            const newOrder = new Order({
+                userId: req.user.id,
+                items: items,
+                totalAmount: amount,
+            });
+
+            await newOrder.save();
+            res.json({ success: true, message: 'Payment successful and order placed' });
+        } else {
+            res.json({ success: false, message: 'Payment failed' });
+        }
+    } else {
+        res.json({ success: false, message: 'Invalid payment details' });
+    }
+});
+
+
+
+
+// Endpoint to fetch the user's orders
+app.get('/myorders', fetchUser, async (req, res) => {
+    const orders = await Order.find({ userId: req.user.id });
+    if (orders) {
+        res.json({ success: true, orders });
+    } else {
+        res.json({ success: false, message: "No orders found" });
+    }
+});
