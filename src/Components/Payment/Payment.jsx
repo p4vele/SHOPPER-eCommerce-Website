@@ -34,8 +34,8 @@ const Payment = () => {
     const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/processpayment', {
       method: 'POST',
       headers: {
-        'auth.token': localStorage.getItem('auth.token'), 
-        'Content-Type': 'application/json' ,
+        'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
+        'Content-Type': 'application/json',
         },
       body: JSON.stringify({
         cardNumber,
