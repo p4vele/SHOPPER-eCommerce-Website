@@ -1,0 +1,19 @@
+.payment-success{
+    margin:100px 170px;
+   
+}
+.payment-success-container{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+.payment-success-container .title{
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+ .gap{
+    margin-left: 250px;
+}
