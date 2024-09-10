@@ -71,6 +71,24 @@
     border-radius: 3px;
     cursor: pointer;
 }
+.size-option {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.size-option:hover {
+    background-color: #f0f0f0;
+}
+
+.size-option.selected {
+    background-color: #c7c6c6;
+    border: 1px solid #f0f0f0;
+}
+
 .productdisplay-right button{
     padding: 20px 40px;
     width: 200px;
