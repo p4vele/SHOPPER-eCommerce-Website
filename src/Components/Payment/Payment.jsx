@@ -13,9 +13,8 @@ const Payment = () => {
   const clearCart = async () => {
     try {
       const response = await fetch('https://shopper-ecommerce-website-backend.onrender.com/clearcart', {
-        method: 'POST',
         headers: {
-          'auth.token': localStorage.getItem('auth.token'),
+          'Authorization': `Bearer ${localStorage.getItem('auth.token')}`,
           'Content-Type': 'application/json',
         },
       });
