@@ -12,14 +12,6 @@ const ProductDisplay = (props) => {
     const handleSizeClick = (size) => {
         setSelectedSize(size);
     };
-    const handleAddToCart = () => {
-        if (selectedSize) {
-            addToCart(product.id, selectedSize);
-        } else {
-            alert('Please select a size.');
-        }
-    };
-
   return (
     <div className='productdisplay'>
         <div className="productdisplay-left">
@@ -61,14 +53,13 @@ const ProductDisplay = (props) => {
                             <div
                                 key={size}
                                 className={`size-option ${selectedSize === size ? 'selected' : ''}`}
-                                onClick={() => handleSizeClick(size)}
-                            >
+                                onClick={() => handleSizeClick(size)}>
                                 {size}
                             </div>
                     ))}
                 </div>
             </div>
-            <button onClick={handleAddToCart}>ADD TO CART</button>
+            <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
         <p className='productdisplay-right-category'><span>Category:</span> {product.category}</p>
         <p className='productdisplay-right-category'><span>Tags: </span>Modern, Latest</p>
         </div>

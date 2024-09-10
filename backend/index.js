@@ -271,14 +271,9 @@ const fetchUser = async(req, res,next)=>{
 }
 //creating endpoint for adding products to cartdata
 app.post('/addtocart',fetchUser,async(req, res)=>{
-    const { itemId, size } = req.body;
-    console.log("Added", itemId, "Size", size);
-    let userData = await Users.findOne({ _id: req.user.id });
-    if (!userData.cartData[itemId]) {
-        userData.cartData[itemId] = { quantity: 0, size: size };
-    }
-    userData.cartData[itemId].quantity += 1;
-    userData.cartData[itemId].size = size;
+    console.log("Added",req.body.itemId);
+    let userData = await Users.findOne({_id:req.user.id});
+    userData.cartData[req.body.itemId] += 1;
     await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
     res.send({success:true, message:"Product added to cart"});
 })
