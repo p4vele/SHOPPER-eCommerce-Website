@@ -341,9 +341,6 @@ app.post('/processpayment',fetchUser, async (req, res) => {
 
     if (cardNumber && expiryDate && cvv) {
         console.log(`Processing payment of $${amount} for card ${cardNumber}`);
-        
-        
-        if (cardNumber === '4242424242424242') {  // Example dummy Visa card
 
             let userData = await Users.findOne({_id: req.user.id});
             const cartItems = Object.keys(userData.cartData)
@@ -369,9 +366,7 @@ app.post('/processpayment',fetchUser, async (req, res) => {
 
             await newOrder.save();
             res.json({ success: true, message: 'Payment successful and order placed' });
-        } else {
-            res.json({ success: false, message: 'Payment failed' });
-        }
+       
     } else {
         res.json({ success: false, message: 'Invalid payment details' });
     }
