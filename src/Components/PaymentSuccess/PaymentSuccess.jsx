@@ -12,12 +12,8 @@ const PaymentSuccess = () => {
             <h1>Payment Successful!</h1>
         </div>
         <p>Thank you for your purchase. Your order has been placed successfully.</p>
-        <div className='cartitems-total gap'>
-            <button onClick={() => navigate('/my-orders')}>View My Orders</button> 
-        </div>
-        <div className='cartitems-total gap'>
-            <button onClick={() => navigate('/')}>Return to Home</button> 
-        </div>
+        <button onClick={() => navigate('/my-orders')}>View My Orders</button> 
+        <button onClick={() => navigate('/')}>Return to Home</button> 
       </div>
     </div>
   );

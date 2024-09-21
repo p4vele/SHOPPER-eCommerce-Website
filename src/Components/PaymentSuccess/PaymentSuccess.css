@@ -14,6 +14,30 @@
     margin-bottom: 50px;
 }
 
- .gap{
-    margin-left: 250px;
+.payment-success-container button{
+    width: 262px;
+    height: 58px;
+    outline: none;
+    border: none;
+    background: #ff5a5a;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media(max-width:500px) {
+  
+    .payment-success{
+        margin: 60px 50px;
+    }
+    .payment-success-container .title{
+        font-size: 20px;
+    }
+    .payment-success-container button{
+        max-width: 200px;
+        height: 45px;
+        font-size: 13px;
+    }
+   
 }

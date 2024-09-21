@@ -76,9 +76,7 @@ const Payment = () => {
             value={cvv}
             onChange={(e) => setCvv(e.target.value)}
         />
-        <div className='cartitems-total gap'>
-            <button onClick={handlePayment}>Pay ${getTotalCartAmount()}</button>
-        </div>
+        <button onClick={handlePayment}>Pay ${getTotalCartAmount()}</button>
         </div>
     </div>
   );
