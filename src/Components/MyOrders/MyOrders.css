@@ -1,5 +1,5 @@
 .myorders {
-    margin: 50px 170px;
+    margin: 60px 170px;
   }
   
   .myorders-container {
@@ -23,7 +23,7 @@
   .order-status {
     font-weight: 600;
     font-size: 16px;
-    color: #555;
+    color: #6a5d5d;
   }
   
   .order-items {
@@ -52,4 +52,16 @@
   }
   .order-price{
     font-weight: 600;
+  }
+
+  @media(max-width:1024px) {
+    .myorders {
+      margin: 60px 10px;
+    }
+    .myorders-container {
+      display: grid;
+      grid-template-columns: minmax(250px, 1fr);
+      gap: 20px;
+    }
+    
   }
